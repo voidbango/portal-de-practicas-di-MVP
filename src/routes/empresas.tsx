@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Star, MapPin, Users } from "lucide-react";
+import { useState } from "react";
+import { Star, MapPin, Users, Search } from "lucide-react";
 import { companies, offers } from "@/lib/data";
 
 export const Route = createFileRoute("/empresas")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Empresas en convenio · DI UTFSM" },
       { name: "description", content: "Directorio de empresas colaboradoras del DI UTFSM." },
       { property: "og:title", content: "Empresas en convenio · DI UTFSM" },
@@ -15,12 +18,31 @@ export const Route = createFileRoute("/empresas")({
 });
 
 function CompaniesPage() {
+  const [query, setQuery] = useState("");
+  const normalizedQuery = query.trim().toLocaleLowerCase("es");
+  const filteredCompanies = companies.filter((company) =>
+    company.name.toLocaleLowerCase("es").includes(normalizedQuery),
+  );
   return (
     <div>
       <h1 className="text-3xl font-bold text-primary">Empresas en convenio</h1>
       <p className="mt-1 text-muted-foreground">Evaluadas por estudiantes sansanos que realizaron su práctica.</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {companies.map((c) => {
+      <div className="relative mt-5">
+        <Search aria-hidden="true" className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+        <input
+          type="search"
+          aria-label="Buscar empresa"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Buscar por nombre de empresa…"
+          className="w-full rounded-xl border bg-card py-2.5 pl-9 pr-3 outline-none focus:ring-2 focus:ring-ring"
+        />
+      </div>
+      <p aria-live="polite" className="mt-4 text-sm text-muted-foreground">
+        {filteredCompanies.length} {filteredCompanies.length === 1 ? "empresa encontrada" : "empresas encontradas"}
+      </p>
+      <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredCompanies.map((c) => {
           const active = offers.filter((o) => o.company === c.name);
           return (
             <div key={c.name} className="rounded-xl border bg-card p-5 transition hover:shadow-lg">
@@ -46,6 +68,9 @@ function CompaniesPage() {
             </div>
           );
         })}
+        {filteredCompanies.length === 0 && (
+          <p className="text-muted-foreground">No hay empresas que coincidan con tu búsqueda.</p>
+        )}
       </div>
     </div>
   );
