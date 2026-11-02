@@ -23,12 +23,12 @@ const rutOk = (r: string) => /^\d{1,2}\.?\d{3}\.?\d{3}-[\dkK]$/.test(r.trim());
 function EnrollmentPage({ onDone }: { onDone: () => void }) {
   const { addEnrollment } = useStore();
   const [f, setF] = useState(empty);
-  const [err, setErr] = useState<Record<string, string>>({});
+  const [err, setErr] = useState<Partial<Record<keyof typeof empty, string>>>({});
   const set = (k: keyof typeof empty) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setF({ ...f, [k]: e.target.value });
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const er: Record<string, string> = {};
+    const er: Partial<Record<keyof typeof empty, string>> = {};
     if (!f.company.trim()) er.company = "Ingresa el nombre de la empresa";
     if (!rutOk(f.rut)) er.rut = "RUT inválido (ej: 76.645.030-K)";
     if (!f.supervisor.trim()) er.supervisor = "Ingresa el nombre del supervisor";
@@ -37,7 +37,7 @@ function EnrollmentPage({ onDone }: { onDone: () => void }) {
     if (!f.end) er.end = "Fecha requerida";
     else if (f.start && f.end <= f.start) er.end = "Debe ser posterior al inicio";
     setErr(er);
-    if (Object.keys(er).length) return toast.error("Revisa los campos marcados");
+    if (Object.keys(er).length) { toast.error("Revisa los campos marcados"); return; }
     addEnrollment({ ...f, id: crypto.randomUUID(), tipo: "Práctica Industrial (IWI-300 / 360 horas)", status: "Inscrita - En Revisión DI" });
     toast.success("Práctica inscrita", { description: "Estado: Inscrita - En Revisión DI" });
     setF(empty);

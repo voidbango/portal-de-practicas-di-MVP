@@ -59,7 +59,7 @@ function LogbookPage() {
   const [desc, setDesc] = useState("");
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim() || !desc.trim()) return toast.error("Completa título y descripción");
+    if (!title.trim() || !desc.trim()) { toast.error("Completa título y descripción"); return; }
     addLog({ id: crypto.randomUUID(), week: logs.length + 1, date: new Date().toISOString().slice(0, 10), title, description: desc });
     setTitle(""); setDesc("");
     toast.success("Entrada agregada a la bitácora");
