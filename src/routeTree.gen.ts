@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EmpresasRouteImport } from './routes/empresas'
+import { Route as InscripcionesRouteImport } from './routes/inscripciones'
+import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as SeguimientoRouteImport } from './routes/seguimiento'
+import { Route as OfertasIdRouteImport } from './routes/ofertas.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmpresasRoute = EmpresasRouteImport.update({
+  id: '/empresas',
+  path: '/empresas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InscripcionesRoute = InscripcionesRouteImport.update({
+  id: '/inscripciones',
+  path: '/inscripciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeguimientoRoute = SeguimientoRouteImport.update({
+  id: '/seguimiento',
+  path: '/seguimiento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OfertasIdRoute = OfertasIdRouteImport.update({
+  id: '/ofertas/$id',
+  path: '/ofertas/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/empresas': typeof EmpresasRoute
+  '/inscripciones': typeof InscripcionesRoute
+  '/perfil': typeof PerfilRoute
+  '/seguimiento': typeof SeguimientoRoute
+  '/ofertas/$id': typeof OfertasIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/empresas': typeof EmpresasRoute
+  '/inscripciones': typeof InscripcionesRoute
+  '/perfil': typeof PerfilRoute
+  '/seguimiento': typeof SeguimientoRoute
+  '/ofertas/$id': typeof OfertasIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/empresas': typeof EmpresasRoute
+  '/inscripciones': typeof InscripcionesRoute
+  '/perfil': typeof PerfilRoute
+  '/seguimiento': typeof SeguimientoRoute
+  '/ofertas/$id': typeof OfertasIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/empresas'
+    | '/inscripciones'
+    | '/perfil'
+    | '/seguimiento'
+    | '/ofertas/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/empresas'
+    | '/inscripciones'
+    | '/perfil'
+    | '/seguimiento'
+    | '/ofertas/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/empresas'
+    | '/inscripciones'
+    | '/perfil'
+    | '/seguimiento'
+    | '/ofertas/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EmpresasRoute: typeof EmpresasRoute
+  InscripcionesRoute: typeof InscripcionesRoute
+  PerfilRoute: typeof PerfilRoute
+  SeguimientoRoute: typeof SeguimientoRoute
+  OfertasIdRoute: typeof OfertasIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/empresas': {
+      id: '/empresas'
+      path: '/empresas'
+      fullPath: '/empresas'
+      preLoaderRoute: typeof EmpresasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inscripciones': {
+      id: '/inscripciones'
+      path: '/inscripciones'
+      fullPath: '/inscripciones'
+      preLoaderRoute: typeof InscripcionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seguimiento': {
+      id: '/seguimiento'
+      path: '/seguimiento'
+      fullPath: '/seguimiento'
+      preLoaderRoute: typeof SeguimientoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ofertas/$id': {
+      id: '/ofertas/$id'
+      path: '/ofertas/$id'
+      fullPath: '/ofertas/$id'
+      preLoaderRoute: typeof OfertasIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EmpresasRoute: EmpresasRoute,
+  InscripcionesRoute: InscripcionesRoute,
+  PerfilRoute: PerfilRoute,
+  SeguimientoRoute: SeguimientoRoute,
+  OfertasIdRoute: OfertasIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
