@@ -8,6 +8,7 @@ Prototipo de Producto Mínimo Viable (MVP) interactivo desarrollado en React par
 2. **Inscripción de Práctica:** Formulario guiado de formalización de práctica según normativa reglamentaria, registro de datos de empresa y supervisor.
 3. **Seguimiento, Bitácora e Informe Final:** Registro periódico de bitácora semanal, monitoreo de horas completadas y entrega de informe final / evaluación de supervisor.
 
+
 ## Ejecución Local
 
 ```bash
