@@ -27,7 +27,7 @@ export interface Company {
 
 export const companies: Company[] = [
   { name: "Banco Itaú", rut: "76.645.030-K", sector: "Banca y Finanzas", rating: 4.5, city: "Santiago", practicantesUSM: 38 },
-  { name: "BRASS Engineering", rut: "77.112.340-5", sector: "Ingeniería de Software", rating: 4.8, city: "Viña del Mar", practicantesUSM: 22 },
+  { name: "VOLVO CHILE SPA", rut: "77.112.340-5", sector: "Automotriz", rating: 4.8, city: "Viña del Mar", practicantesUSM: 22 },
   { name: "Mercado Libre", rut: "76.248.812-3", sector: "E-commerce", rating: 4.7, city: "Santiago", practicantesUSM: 51 },
   { name: "Codelco", rut: "61.704.000-K", sector: "Minería", rating: 4.2, city: "Santiago", practicantesUSM: 17 },
   { name: "NotCo", rut: "76.553.201-8", sector: "Foodtech / IA", rating: 4.6, city: "Santiago", practicantesUSM: 9 },
@@ -51,18 +51,18 @@ export const offers: Offer[] = [
     posted: "Hace 2 días",
   },
   {
-    id: "brass-backend",
+    id: "volvo-backend",
     title: "Práctica Backend Python / Django",
-    company: "BRASS Engineering",
+    company: "VOLVO CHILE SPA",
     location: "Viña del Mar, Valparaíso",
     stipend: 500000,
     modalidad: "Presencial",
     rol: "Backend",
     match: 91,
     description:
-      "Desarrollarás APIs REST para sistemas de gestión industrial de clientes mineros. Aprenderás buenas prácticas de arquitectura, Docker y despliegue en la nube junto a ex-alumnos sansanos.",
+      "Desarrollarás APIs REST para sistemas de gestión industrial y logística. Aprenderás buenas prácticas de arquitectura, Docker y despliegue en la nube junto a ex-alumnos sansanos.",
     requirements: ["Python intermedio", "SQL (PostgreSQL)", "Conocimientos de Docker", "Disponibilidad presencial en Viña"],
-    supervisor: { name: "Felipe Muñoz", email: "fmunoz@brass.cl", phone: "+56 9 5555 1234" },
+     supervisor: { name: "Felipe Muñoz", email: "fmunoz@volvo.cl", phone: "+56 9 5555 1234" },
     posted: "Hace 5 días",
   },
   {
@@ -162,10 +162,10 @@ export interface LogEntry {
 export const seedEnrollments: Enrollment[] = [
   {
     id: "e1",
-    company: "BRASS Engineering",
+    company: "VOLVO CHILE SPA",
     rut: "77.112.340-5",
     supervisor: "Felipe Muñoz",
-    supervisorEmail: "fmunoz@brass.cl",
+    supervisorEmail: "fmunoz@volvo.cl",
     tipo: "Práctica Industrial (IWI-300 / 360 horas)",
     start: "2026-10-05",
     end: "2026-11-27",

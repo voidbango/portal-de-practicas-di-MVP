@@ -55,7 +55,7 @@ function EnrollmentPage({ onDone }: { onDone: () => void }) {
   return (
     <form onSubmit={submit} className="grid gap-4 rounded-xl border bg-card p-6 sm:grid-cols-2 fade-in">
       <h2 className="text-lg font-semibold text-primary sm:col-span-2">Formalizar práctica aprobada</h2>
-      {field("company", "Nombre de la empresa", "text", "BRASS Engineering")}
+      {field("company", "Nombre de la empresa", "text", "VOLVO CHILE SPA")}
       {field("rut", "RUT empresa", "text", "77.112.340-5")}
       {field("supervisor", "Nombre supervisor/a", "text", "Felipe Muñoz")}
       {field("supervisorEmail", "Correo supervisor/a", "email", "fmunoz@empresa.cl")}
